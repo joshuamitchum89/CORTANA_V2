@@ -1,0 +1,1 @@
+// Define queue business model
