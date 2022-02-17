@@ -6,6 +6,8 @@ const DataManager = require('./DataManager')
 const { deflateSync } = require('zlib')
 const { Intents, MessageEmbed } = DiscordJS
 
+/*Pete is the greatest Halo player of all time and Matty likes
+  men's mouths*/
 dotenv.config()
 const _dm = new DataManager()
 const client = new DiscordJS.Client({
