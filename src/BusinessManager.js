@@ -1,5 +1,23 @@
-// Build Business Manager class that handles all business logic
+const profileBM = require('./models/profileBM')
+const queueBM = require('./models/queueBM')
+const matches = require('./models/matchBM')
 
-/* This class will define a business object that imposes rules handling business models and DataManager calls */
+class BusinessManager
+{
+    profiles = []
+    matches = []
+    queues = []
 
-// require datamanger
+    join(user)
+    {
+        this.profiles.push(user.username)
+        return this.profiles
+    }
+
+    getQueueById(queueId)
+    {
+        // Logic for returning queue by queueId
+    }
+}
+
+module.exports = BusinessManager;
