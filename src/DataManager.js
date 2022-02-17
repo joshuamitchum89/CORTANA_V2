@@ -3,7 +3,7 @@ const profileDO = require('./models/profileDM')
 const dotenv = require('dotenv')
 dotenv.config()
 
-/* This class will define db calls to be used by the DataManager */
+/* This class will be defined to handle db calls to be used by the DataManager */
 
 class DataManager
 {
