@@ -1,6 +1,6 @@
 const DiscordJS = require('discord.js');
 const { MessageEmbed } = DiscordJS;
-const BusinessManager = require('../../BusinessManager')
+const BusinessManager = require('../../BusinessManager');
 
 const _bm = new BusinessManager()
 
@@ -13,8 +13,17 @@ module.exports = {
 
     , callback: async ({ interaction }) => {
         var userArr = _bm.addUser(interaction.user);
-        const embed = initUserInfoEmbed(`${userArr.join('\n')}`)
-        interaction.reply({embeds: [embed]})
+        _bm.createQueue(userArr, interaction.id)
+        var queues = _bm.getQueues()
+        // Prints array of queues
+        console.log(queues)
+        // Prints first queue in the queues array
+        console.log(queues[0])
+        // Prints all players in the queue
+        console.log(queues[0].players)
+
+        // const embed = initUserInfoEmbed(`${userArr.join('\n')}`)
+        // interaction.reply({embeds: [embed]})
     }
 }
 

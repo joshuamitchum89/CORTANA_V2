@@ -1,7 +1,23 @@
-const queueBM = {
-    active: {type: Boolean, required: true}
-    ,players: {type: Array, required: true }
-    , queueId: {type: String, required: true}
-    };
+class queueBM
+{
+    #isActive
+    queueId
+    players = []
+    constructor(playerArr, interactionId)
+    {
+        this.players = playerArr
+        this.#isActive = true
+        this.queueId = interactionId
+    }
 
+    getPlayers()
+    {
+        return this.players
+    }
+
+    getQueueId()
+    {
+        return this.queueId
+    }
+}
 module.exports = queueBM;
