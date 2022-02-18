@@ -4,14 +4,28 @@ const matches = require('./models/matchBM')
 
 class BusinessManager
 {
-    profiles = []
+    users = []
     matches = []
     queues = []
 
-    join(user)
+    addUser(user)
     {
-        this.profiles.push(user.username)
-        return this.profiles
+        this.users.push(user)
+        return this.users
+    }
+
+
+    
+    // NOT TESTED!
+    createQueue()
+    {
+        // should create a new queueBM and push it into the queues array
+        // only if there are 8 players in the users array
+        // return new queueBM = {
+        //     active: true
+        //     ,players: users
+        //     , queueId: '19392810092'
+        //     };
     }
 
     getQueueById(queueId)

@@ -1,5 +1,6 @@
 const queueBM = {
-    players: {type: Array, required: true }
+    active: {type: Boolean, required: true}
+    ,players: {type: Array, required: true }
     , queueId: {type: String, required: true}
     };
 

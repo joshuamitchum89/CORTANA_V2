@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const profileDO = require('./models/profileDM')
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
+const profileDM = require('./models/profileDM');
 dotenv.config()
 
 /* This class will be defined to handle db calls to be used by the DataManager */
@@ -31,7 +31,7 @@ class DataManager
     createProfile(userId, username)
     {
         setTimeout(async () => {
-            await new profileDO({
+            await new profileDM({
                 userName: username
                 ,userID : userId
                 ,mmr: 0
