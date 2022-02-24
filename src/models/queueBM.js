@@ -1,15 +1,15 @@
 class queueBM
 {
-    #isActive
+    isActive
     queueId
     players = []
     constructor(playerArr, interactionId)
     {
         this.players = playerArr
-        this.#isActive = true
+        this.isActive = true
         this.queueId = interactionId
     }
-
+    
     getPlayers()
     {
         return this.players

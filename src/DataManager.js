@@ -40,6 +40,11 @@ class DataManager
             }).save()
         }, 1000)
     }
+
+    getProfiles()
+    {
+        return mongoose.connection.collection('profiles').find()
+    }
 }
 
 module.exports = DataManager;

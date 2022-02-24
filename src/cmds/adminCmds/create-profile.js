@@ -3,6 +3,10 @@ const DataManager = require('../../DataManager')
 const { MessageEmbed } = DiscordJS;
 const _dm = new DataManager()
 
+/**
+ *  Creates a profile in database based on your username and id
+ */
+
 module.exports = {
     category: 'Testing'
     ,description: 'Enters profile into DB'

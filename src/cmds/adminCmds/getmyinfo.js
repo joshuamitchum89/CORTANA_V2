@@ -1,9 +1,10 @@
 const DiscordJS = require('discord.js');
 const { MessageEmbed } = DiscordJS;
-const BusinessManager = require('../../BusinessManager')
 
-const _bm = new BusinessManager()
- 
+
+/**
+ * Returns the user that uses this cmd
+ */
 
 module.exports = {
     category: 'Testing'
@@ -12,16 +13,20 @@ module.exports = {
     ,permissions: ['ADMINISTRATOR']
 
     , callback: async ({ interaction }) => {
-        const embed = initUserInfoEmbed(interaction.user.id, interaction.user.username)
-        interaction.reply({embeds: [embed]})
+
+        buildResponse(interaction)
     }
 }
 
-function initUserInfoEmbed(userId, username)
+function buildResponse(interaction){
+    const embed = initUserInfoEmbed(`${interaction.user}`)
+    interaction.reply({embeds: [embed]})
+}
+
+function initUserInfoEmbed(player)
 {
     const embed = new MessageEmbed()
-    .setDescription(userId)
-    .setAuthor(username)
+    .setDescription(player)
     .setColor('RED')
 
     return embed
