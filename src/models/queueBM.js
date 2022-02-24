@@ -1,8 +1,9 @@
 class queueBM
 {
     isActive
+    rank
     queueId
-    players = []
+    players = [] // list of profileBM objects
     constructor(playerArr, interactionId)
     {
         this.players = playerArr
