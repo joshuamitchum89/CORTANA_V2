@@ -6,3 +6,24 @@
  * and over to an instance of a profileDM object and save it in the
  * data access layer of code.
  */
+
+class profileBM {
+    userName
+    userId
+    mmr
+    wins
+    losses
+    // when a new profileBM is made it 
+    // requires a profile object from the db
+    // to copy over properties.
+    constructor(profile){
+        this.userName = profile.userName
+        this.userId = profile.userId
+        this.mmr = profile.mmr
+        this.wins = profile.wins
+        this.losses = profile.losses
+    }
+
+    // Methods for manipulating object properties go here
+}
+module.exports = profileBM;

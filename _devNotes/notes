@@ -1,0 +1,5 @@
+TODO:
+Need to figure out a way to seperate the data access from the cmds.
+All cmds can call the BusinessManager to manage their requests.
+BusinessManager should have access to DataManager and make an instance
+of DataManager so profiles can be called and updated using profileBM

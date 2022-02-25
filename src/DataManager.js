@@ -41,9 +41,12 @@ class DataManager
         }, 1000)
     }
 
-    getProfiles()
-    {
-        return mongoose.connection.collection('profiles').find()
+    getProfiles(){
+
+    }
+
+    getProfileById(id){
+
     }
 }
 

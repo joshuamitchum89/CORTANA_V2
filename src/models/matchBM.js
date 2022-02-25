@@ -3,7 +3,8 @@ class matchBM
     isActive
     map
     gameType
-    teams = []
+    teamA
+    teamB
     rank
     matchId
     players = [] // list of profileBM objects

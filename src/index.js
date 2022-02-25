@@ -3,7 +3,6 @@ const dotenv = require('dotenv')
 const WOKCommands = require('wokcommands')
 const path = require('path')
 const DataManager = require('./DataManager')
-const { deflateSync } = require('zlib')
 const { Intents, MessageEmbed } = DiscordJS
 
 dotenv.config()

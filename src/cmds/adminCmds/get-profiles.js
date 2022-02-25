@@ -3,7 +3,7 @@ const { MessageEmbed } = DiscordJS;
 
 /**
  * TODO:
- * getProfiles()
+ * getProfiles() from BusinessManager call to DataManager
  * build response upon these profiles
  */
 
