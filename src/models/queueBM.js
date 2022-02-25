@@ -4,21 +4,16 @@ class queueBM
     rank
     queueId
     players = [] // list of profileBM objects
-    constructor(playerArr, interactionId)
+    constructor(playerArr, interactionId, rank)
     {
         this.players = playerArr
         this.isActive = true
         this.queueId = interactionId
+        this.rank = rank
     }
     
-    getPlayers()
-    {
-        return this.players
-    }
-
-    getQueueId()
-    {
-        return this.queueId
+    toggleIsActive(){
+        this.isActive = !this.isActive;
     }
 }
 module.exports = queueBM;
