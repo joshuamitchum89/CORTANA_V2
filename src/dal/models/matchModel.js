@@ -7,7 +7,7 @@ class matchBM
     teamB
     rank
     matchId
-    players = [] // list of profileBM objects
+    players = []
     constructor(playerArr, id)
     {
         this.players = playerArr

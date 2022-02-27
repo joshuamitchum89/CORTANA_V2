@@ -1,6 +1,6 @@
+const QueueController = require('../../controllers/QueueController');
 const DiscordJS = require('discord.js');
-const { ProfilingLevel } = require('mongodb');
-const { MessageEmbed } = DiscordJS;
+const { MessageEmbed } = DiscordJS
 
 /*
 TODO:
@@ -18,6 +18,7 @@ Current functionality is when /queue is called an interaction is made and our re
 how to build a reponse based on the conditional of if the user is already in the players array or not.
 */
 
+const queueController = new QueueController();
 var players = []
 
 module.exports = {

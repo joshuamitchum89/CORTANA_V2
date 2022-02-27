@@ -2,7 +2,7 @@ const DiscordJS = require('discord.js')
 const dotenv = require('dotenv')
 const WOKCommands = require('wokcommands')
 const path = require('path')
-const DataManager = require('./DataManager')
+const DataManager = require('./dal/DataManager')
 const { Intents, MessageEmbed } = DiscordJS
 
 dotenv.config()

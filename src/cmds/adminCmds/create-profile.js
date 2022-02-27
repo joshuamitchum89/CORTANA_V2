@@ -1,7 +1,7 @@
 const DiscordJS = require('discord.js');
-const DataManager = require('../../DataManager')
 const { MessageEmbed } = DiscordJS;
-const _dm = new DataManager()
+const ProfileController = require('../../controllers/ProfileController')
+const profileController = new ProfileController();
 
 /**
  *  Creates a profile in database based on your username and id
@@ -15,11 +15,10 @@ module.exports = {
 
     
 
-    , callback: async ({ interaction }) => {
-
-       _dm.createProfile(interaction.user.id, interaction.user.username)
-       const embed = initUserInfoEmbed(interaction.user.username)
-       interaction.reply({embeds: [embed]})
+, callback: async ({ interaction }) => {
+    profileController.createProfile(interaction.user)
+    const embed = initUserInfoEmbed(`${interaction.user.username}`)
+    interaction.reply({embeds: [embed]})
     }
 }
 

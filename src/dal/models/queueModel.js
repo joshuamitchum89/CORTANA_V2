@@ -3,7 +3,7 @@ class queueBM
     isActive
     rank
     queueId
-    players = [] // list of profileBM objects
+    players = []
     constructor(playerArr, interactionId, rank)
     {
         this.players = playerArr
@@ -11,7 +11,7 @@ class queueBM
         this.queueId = interactionId
         this.rank = rank
     }
-    
+
     toggleIsActive(){
         this.isActive = !this.isActive;
     }

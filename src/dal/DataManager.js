@@ -28,12 +28,12 @@ class DataManager
         return this.#connectionString;
     }
 
-    createProfile(userId, username)
+    createProfile(user)
     {
         setTimeout(async () => {
             await new profileModel({
-                userName: username
-                ,userID : userId
+                userName: user.username
+                ,userId : user.id
                 ,mmr: 0
                 ,wins: 0
                 ,losses: 0
