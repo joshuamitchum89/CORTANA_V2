@@ -1,4 +1,0 @@
-All cmd files will require BusinessManager IF they handle core functionality:
-    *Queues
-    *Matches
-    *Profiles

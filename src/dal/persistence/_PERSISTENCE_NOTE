@@ -1,3 +1,0 @@
-This will be used to save queues and matches to work with so that in turn
-profiles in the database can be updated based on the results of these 
-persistence objects.
