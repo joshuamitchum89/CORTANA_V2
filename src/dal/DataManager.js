@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const dotenv = require('dotenv');
-const profileDM = require('./models/profileDM');
+const profileModel = require('./models/profileModel.js');
 dotenv.config()
 
 /* Handles any database calls */
@@ -31,7 +31,7 @@ class DataManager
     createProfile(userId, username)
     {
         setTimeout(async () => {
-            await new profileDM({
+            await new profileModel({
                 userName: username
                 ,userID : userId
                 ,mmr: 0

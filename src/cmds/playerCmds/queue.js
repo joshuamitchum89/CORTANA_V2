@@ -1,4 +1,5 @@
 const DiscordJS = require('discord.js');
+const { ProfilingLevel } = require('mongodb');
 const { MessageEmbed } = DiscordJS;
 
 /*
@@ -32,21 +33,23 @@ module.exports = {
 
 function requestHandler(interaction){
     const user = interaction.user
+    var isEphemeral = false
 
     if (!players.includes(user)){
         players.push(user)
         message = `${user}` + ", you've been added to the queue."
         }
     else {
+        isEphemeral = true
         message = `${user}` + ", you're already in a queue."
         }
 
-    buildResponse(interaction, message)
+    buildResponse(interaction, message, isEphemeral)
 }
 
-function buildResponse(interaction, message){
+function buildResponse(interaction, message, ephemeral){
     const embed = initUserInfoEmbed(players.join('\n'), message)
-    interaction.reply({embeds: [embed]})
+    interaction.reply({embeds: [embed], ephemeral})
 }
 
 function initUserInfoEmbed(player, message)
