@@ -19,14 +19,14 @@ module.exports = {
 }
 
 function buildResponse(interaction){
-    const embed = initUserInfoEmbed(`${interaction.user}`)
+    const embed = initUserInfoEmbed(interaction.user)
     interaction.reply({embeds: [embed]})
 }
 
-function initUserInfoEmbed(player)
+function initUserInfoEmbed(user)
 {
     const embed = new MessageEmbed()
-    .setDescription(player)
+    .setDescription(`${user}`)
     .setColor('RED')
 
     return embed

@@ -41,8 +41,10 @@ class DataManager
         }, 1000)
     }
 
-    getProfiles(){
-
+    async getProfiles(){
+        // fetch all profiles
+        const profiles = await profileModel.find()
+        return profiles;
     }
 
     getProfileById(id){

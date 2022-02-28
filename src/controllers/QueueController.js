@@ -8,38 +8,58 @@
  const _dm = new DataManager();
  
  class QueueController {
-   constructor() {
-     this.queues = [];
-     this.queue = null;
-   }
-   
-   selectQueue(queueId) {
-     this.queue = this.queues.filter(queue => queue.queueId === parseInt(queueId, 10))[0];
-   }
 
-   getQueues(){
-     return this.queues;
-   }
- 
-   addQueue(playerArr, queueId, rank) {
-     this.queues.push(new queueModel(playerArr, queueId, rank));
-   }
- 
-   removeQueue(queueId) {
-     this.queues = this.queues
-       .filter(queue => queue.queueId !== parseInt(queueId, 10));
-   }
+  queues;
+  queue;
 
-   addPlayer(player, queue) {
-     if (!player) return;
-     queue.addPlayer(player);
-   }
+  constructor() {
+    // initializes thie objects properties
+    this.queues = [];
+    this.queue = null;
+  }
+
+/**
+ * TODO:
+ * Refactor functions to call datamanager for access to json files
+ */
+  
+  // find queue in queues by id
+  selectQueue(rank) {
+    this.queue = this.queues.filter(queue => queue.rank === parseInt(rank, 10))[0];
+  }
+
+  getQueue(rank){
+    return this.queues.filter(queue => queue.rank === parseInt(rank, 10))[0];
+  }
+
+  // returns all queues
+  getQueues(){
+    return this.queues;
+  }
  
-   removePlayer(player, queueId) {
-     const Queue = this.queues
-     .filter(queue => queue.id === parseInt(queueId, 10))[0];
-     Queue.removePlayer(player);
-   }
- }
+  // add new queueModel to queues
+  addQueue(interactionId, rank) {
+    this.queues.push(new queueModel(interactionId, rank));
+  }
+
+  // remove queue by id
+  removeQueue(rank) {
+    this.queues = this.queues
+      .filter(queue => queue.rank !== parseInt(rank, 10));
+  }
+
+  // add player to queue
+  addPlayer(player, queue) {
+    if (!player) return;
+    queue.addPlayer(player);
+  }
+
+  // remove player from queue
+  removePlayer(player, queueId) {
+    const Queue = this.queues
+    .filter(queue => queue.id === parseInt(queueId, 10))[0];
+    Queue.removePlayer(player);
+  }
+}
 
 module.exports = QueueController;

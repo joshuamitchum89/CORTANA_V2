@@ -1,4 +1,4 @@
-class matchBM
+class matchModel
 {
     isActive
     map
@@ -8,21 +8,14 @@ class matchBM
     rank
     matchId
     players = []
-    constructor(playerArr, id)
+    constructor(playerArr, id, rank)
     {
         this.players = playerArr
         this.isActive = true
         this.match = id
     }
-    
-    getPlayers()
-    {
-        return this.players
-    }
 
-    getQueueId()
-    {
-        return this.queueId
-    }
+    // Build random map function
+    // Build random gameType function
 }
-module.exports = matchBM;
+module.exports = matchModel;

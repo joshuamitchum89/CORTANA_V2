@@ -2,22 +2,6 @@ const QueueController = require('../../controllers/QueueController');
 const DiscordJS = require('discord.js');
 const { MessageEmbed } = DiscordJS
 
-/*
-TODO:
-    Route to BusinessManager.js class to handle these:
-   | Require queueBM class
-   | Create new queueBM object if there isn't one already
-   | Save the queueBM object in json format in /persistence/queues.json
-   | Store players in that queueBM object
-   | Build saveQueue function
-   | Build getQueues function
-   
-Change requestHandler to build a response based on the queues inside queues.json
-
-Current functionality is when /queue is called an interaction is made and our requestHandler decides
-how to build a reponse based on the conditional of if the user is already in the players array or not.
-*/
-
 const queueController = new QueueController();
 var players = []
 

@@ -1,19 +1,15 @@
-class queueBM
+class queueModel
 {
     isActive
     rank
     queueId
-    players = []
-    constructor(playerArr, interactionId, rank)
+    players
+    constructor(interactionId, rank)
     {
-        this.players = playerArr
         this.isActive = true
-        this.queueId = interactionId
         this.rank = rank
-    }
-
-    toggleIsActive(){
-        this.isActive = !this.isActive;
+        this.queueId = interactionId
+        this.players = []
     }
 }
-module.exports = queueBM;
+module.exports = queueModel;

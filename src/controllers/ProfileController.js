@@ -9,26 +9,43 @@ const _dm = new DataManager();
 
 class ProfileController {
 
+    profiles;
+    profile;
+    
     constructor() {
         // initializes thie objects properties
-        this.players = [];
-        this.player = null;
+        this.profiles = [];
+        this.profile = null;
     }
 
-    // find player in players [] by Id
+/**
+ * TODO:
+ * Refactor functions to call datamanager for access to db files
+ */
+
+
+    // find profile in profiles [] by Id
     selectProfile(profileId) {
-        this.player = this.players.filter(player => player.profileId === parseInt(profileId, 10))[0];
+        this.profile = this.profiles.filter(profile => profile.profileId === parseInt(profileId, 10))[0];
     }
 
-    // add new profileModel to players []
-    addProfile(playerArr, profileId, rank) {
-        this.players.push(new profileModel(playerArr, profileId, rank));
+    getProfile(profileId) {
+        return this.profiles.filter(profile => profile.profileId === parseInt(profileId, 10))[0];
     }
 
-    // remove profileModel from players []
+    getProfiles(){
+        return _dm.getProfiles()
+    }
+
+    // add new profileModel to profiles []
+    addProfile(profileArr, profileId, rank) {
+        this.profiles.push(new profileModel(profileArr, profileId, rank));
+    }
+
+    // remove profileModel from profiles []
     removeProfile(profileId) {
-        this.players = this.players
-        .filter(player => player.profileId !== parseInt(profileId, 10));
+        this.profiles = this.profiles
+        .filter(profile => profile.profileId !== parseInt(profileId, 10));
     }
 
     // calls datamanager to save a profile
