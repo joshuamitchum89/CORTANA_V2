@@ -1,5 +1,6 @@
 const QueueController = require('../../controllers/QueueController');
 const DiscordJS = require('discord.js');
+const Router = require('../../Router');
 const { MessageEmbed } = DiscordJS
 
 const queueController = new QueueController();
@@ -12,23 +13,26 @@ module.exports = {
     ,permissions: ['ADMINISTRATOR']
 
     , callback: async ({ interaction }) => {
-        requestHandler(interaction)
+        const category = 'Queue'
+        const name = 'queue'
+        const router = new Router()
+        const response = await router.Route(interaction, category, name)
+        // console.log(response)
+        // requestHandler(interaction, response)
     }
 }
 
 function requestHandler(interaction){
     const user = interaction.user
     var isEphemeral = false
-
     if (!players.includes(user)){
         players.push(user)
         message = `${user}` + ", you've been added to the queue."
-        }
+    }
     else {
         isEphemeral = true
         message = `${user}` + ", you're already in a queue."
-        }
-
+    }
     buildResponse(interaction, message, isEphemeral)
 }
 

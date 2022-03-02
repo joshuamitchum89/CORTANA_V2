@@ -20,13 +20,15 @@ class Router{
     this.matchController = new MatchController()
     this.profileController = new ProfileController()
   }
-//RANK 1 is hardcoded.
+
+// 'Queue' cases do not function properly as of now.
+
   Route(interaction, category, cmdName){
     switch (category) {
       case 'Queue':
         switch (cmdName) {
           case 'queue':
-            this.queueController.addQueue(interaction.id, 1)
+            this.queueController.createQueue(interaction.user, interaction.id, 1)
             break;
           case 'join':
             this.queueController.addPlayer(this.profileController.getProfile(interaction.user.id), this.queueController.getQueue(1))
@@ -42,11 +44,16 @@ class Router{
             this.profileController.createProfile(interaction.user)
             break;
           case 'getprofiles':
-            const profiles = this.profileController.getProfiles()
-            // console.log(profiles)
-            return profiles;
+            return this.profileController.getProfiles()
           case 'removeprofile':
             break;
+        }
+      
+      case 'General':
+        switch (cmdName) {
+          case 'rank':
+            const profile = this.profileController.getProfile(interaction.user.id)
+            return profile
         }
     }
   }

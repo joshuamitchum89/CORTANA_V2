@@ -4,12 +4,13 @@ class queueModel
     rank
     queueId
     players
-    constructor(interactionId, rank)
+    constructor(user, interactionId, rank)
     {
         this.isActive = true
         this.rank = rank
         this.queueId = interactionId
         this.players = []
+        this.players.push(user)
     }
 }
 module.exports = queueModel;

@@ -29,7 +29,7 @@ class MatchController {
   }
 
   // returns all matchs
-  getMatchs(){
+  getMatches(){
     return this.matchs;
   }
  

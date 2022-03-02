@@ -29,8 +29,8 @@ class ProfileController {
         this.profile = this.profiles.filter(profile => profile.profileId === parseInt(profileId, 10))[0];
     }
 
-    getProfile(profileId) {
-        return this.profiles.filter(profile => profile.profileId === parseInt(profileId, 10))[0];
+    getProfile(id) {
+        return _dm.getProfileById(id);
     }
 
     getProfiles(){
