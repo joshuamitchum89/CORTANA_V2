@@ -39,6 +39,10 @@ class DataManager
                 ,mmr: 0
                 ,wins: 0
                 ,losses: 0
+                ,rank: 0
+                ,rankRole: 0
+                ,emblem: ' '
+                ,gamerTag: ' '
             }).save()
         }, 1000)
     }

@@ -31,18 +31,17 @@ class Router{
             this.queueController.createQueue(interaction.user, interaction.id, 1)
             break;
           case 'join':
-            this.queueController.addPlayer(this.profileController.getProfile(interaction.user.id), this.queueController.getQueue(1))
+            // /join route
             break;
           case 'leave':
-            this.queueController.removePlayer(this.profileController.getProfile(interaction.user.id), this.queueController.removePlayer(1))
+            // /leave route
             break;
         }
 
       case 'Admin':
         switch (cmdName) {
           case 'createprofile':
-            this.profileController.createProfile(interaction.user)
-            break;
+            return this.profileController.createProfile(interaction.user)
           case 'getprofiles':
             return this.profileController.getProfiles()
           case 'removeprofile':
@@ -52,7 +51,7 @@ class Router{
       case 'General':
         switch (cmdName) {
           case 'rank':
-            const profile = this.profileController.getProfile(interaction.user.id)
+            const profile = this.profileController.getProfileById(interaction.user.id)
             return profile
         }
     }

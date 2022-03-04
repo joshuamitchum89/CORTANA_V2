@@ -9,13 +9,8 @@ const _dm = new DataManager();
 
 class ProfileController {
 
-    profiles;
-    profile;
-    
     constructor() {
-        // initializes thie objects properties
-        this.profiles = [];
-        this.profile = null;
+
     }
 
 /**
@@ -23,13 +18,7 @@ class ProfileController {
  * Refactor functions to call datamanager for access to db files
  */
 
-
-    // find profile in profiles [] by Id
-    selectProfile(profileId) {
-        this.profile = this.profiles.filter(profile => profile.profileId === parseInt(profileId, 10))[0];
-    }
-
-    getProfile(id) {
+    getProfileById(id) {
         return _dm.getProfileById(id);
     }
 
@@ -37,21 +26,26 @@ class ProfileController {
         return _dm.getProfiles()
     }
 
-    // add new profileModel to profiles []
-    addProfile(profileArr, profileId, rank) {
-        this.profiles.push(new profileModel(profileArr, profileId, rank));
+    removeProfile(id) {
+        // call _dm to remove profile based on profile id if exists
     }
 
-    // remove profileModel from profiles []
-    removeProfile(profileId) {
-        this.profiles = this.profiles
-        .filter(profile => profile.profileId !== parseInt(profileId, 10));
-    }
-
-    // calls datamanager to save a profile
-    createProfile(user) {
-        _dm.createProfile(user)
+    async createProfile(user) {
+        var profile = await _dm.getProfileById(user.id)
+        var message = " "
+        if(profile){
+            message = "Found profile in database."
+        }
+        if(!profile){
+            _dm.createProfile(user)
+            await delay(1000)
+            profile = await _dm.getProfileById(user.id)
+            message = "Added profile to database."
+        }
+        return { profile, message }
     }
 }
+
+const delay = ms => new Promise(res => setTimeout(res, ms));
 
 module.exports = ProfileController;

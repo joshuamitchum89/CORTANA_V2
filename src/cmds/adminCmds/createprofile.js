@@ -1,11 +1,10 @@
 const DiscordJS = require('discord.js');
 const { MessageEmbed } = DiscordJS;
-// const ProfileController = require('../../controllers/ProfileController')
-// const profileController = new ProfileController();
 const Router = require('../../Router')
 
-/**
- *  Creates a profile in database based on your username and id
+/*
+ *  Creates a profile in database based on your username and id and returns an embed of that profile.
+ *  Also a status msg that says if you were already in the database or if it created you a profile.
  */
 
 module.exports = {
@@ -18,20 +17,37 @@ module.exports = {
 , callback: async ({ interaction }) => {
     const category = 'Admin'
     const name = 'createprofile'
-    var router = new Router()
-    var user = interaction.user
-    router.Route(interaction, category, name)
-    const embed = initUserInfoEmbed(user)
-    interaction.reply({embeds: [embed]})
+    const router = new Router()
+    const response = await router.Route(interaction, category, name)
+    console.log(response.profile)
+    buildResponse(interaction, response)
     }
 }
 
-function initUserInfoEmbed(user)
+function buildResponse(interaction, response){
+    const embed = initEmbed(response.profile, response.message)
+    interaction.reply({embeds: [embed]})
+}
+
+function initEmbed(profile, message)
 {
     const embed = new MessageEmbed()
-    .setDescription(`${user}` + " You have been entered into the DB.")
-    .setAuthor('CORTANA 2.0')
+    .setAuthor(profile.userName)
     .setColor('RED')
-
+    formatPlayerField(profile, embed)
+    .addField('Status: ',  message, inline = true)
     return embed
+}
+
+function formatPlayerField(profile, embed){
+    return embed.addField('Profile : ', 
+    'Username: ' + `${profile.userName}` + '\n'
+    + 'MMR: ' + `${profile.mmr}` + '\n'
+    + 'Wins: ' + `${profile.wins}` + '\n' 
+    + 'Losses: ' + `${profile.losses}` + '\n'
+    + 'Rank: ' + `${profile.rank}` + '\n'
+    + 'Emblem: ' + `${profile.emblem}` + '\n'
+    + 'Gamer Tag: ' + `${profile.gamerTag}` + '\n'
+    , inline = true
+    )
 }
