@@ -3,9 +3,6 @@ const DiscordJS = require('discord.js');
 const Router = require('../../Router');
 const { MessageEmbed } = DiscordJS
 
-const queueController = new QueueController();
-var players = []
-
 module.exports = {
     category: 'Testing'
     ,description: 'Sends an embed'
@@ -13,41 +10,33 @@ module.exports = {
     ,permissions: ['ADMINISTRATOR']
 
     , callback: async ({ interaction }) => {
-        const category = 'Queue'
-        const name = 'queue'
-        const router = new Router()
-        const response = await router.Route(interaction, category, name)
-        // console.log(response)
-        // requestHandler(interaction, response)
+        requestHandler(interaction)
     }
 }
 
-function requestHandler(interaction){
-    const user = interaction.user
-    var isEphemeral = false
-    if (!players.includes(user)){
-        players.push(user)
-        message = `${user}` + ", you've been added to the queue."
-    }
-    else {
-        isEphemeral = true
-        message = `${user}` + ", you're already in a queue."
-    }
-    buildResponse(interaction, message, isEphemeral)
+async function requestHandler(interaction){
+    const category = 'Queue'
+    const name = 'queue'
+    const router = new Router()
+    const response = await router.Route(interaction, category, name)
+    console.log(response)
+    console.log(response.queue.players)
+    buildResponse(interaction, response)
 }
 
-function buildResponse(interaction, message, ephemeral){
-    const embed = initUserInfoEmbed(players.join('\n'), message)
-    interaction.reply({embeds: [embed], ephemeral})
+function buildResponse(interaction, response){
+    const embed = initEmbed(response)
+    interaction.reply({embeds: [embed], ephemeral: response.isEphemeral })
 }
 
-function initUserInfoEmbed(player, message)
+function initEmbed(response)
 {
+    const players = []
+    response.queue.players.forEach(player => players.push(player.userName))
     const embed = new MessageEmbed()
-    .setTitle("Rank 1 Queue")
-    .addField("Player Status", message)
-    .addField("Players:", `${player}`)
-    .setColor('RED')
-
+    .setTitle("Rank " + response.queue.rank + " Queue")
+    .setDescription(response.message)
+    .addField("Players in Queue: ", `${players}`)
+    .setColor('GREEN')
     return embed
 }

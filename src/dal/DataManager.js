@@ -59,6 +59,9 @@ class DataManager
     }
 
     async createQueue(user, interactionId, rank){
+        // checkFilesExists()
+        // if not create file queues.json and add queue
+        // if so add queue
         const profile = await this.getProfileById(user.id)
         const queue = new queueModel(profile, interactionId, rank)
         const jsonQueue = JSON.stringify(queue)
