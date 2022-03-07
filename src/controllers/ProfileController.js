@@ -44,6 +44,15 @@ class ProfileController {
         }
         return { profile, message }
     }
+
+    updateProfile(profile){
+        
+    }
+
+    updateMMR(profile, newMMR){
+        profile.mmr = newMMR
+        // ALGO for rank
+    }
 }
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
