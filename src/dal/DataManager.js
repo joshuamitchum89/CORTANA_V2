@@ -72,6 +72,21 @@ class DataManager
         })
     }
 
+    async joinQueue(user, interactionId, rank){
+        const selectedQueue = this.getQueueByRank(rank)
+        var profile = new profileModel()
+        profile = await this.getProfileById(user.id)        
+        selectedQueue.players.push(profile)
+        const jsonQueue = JSON.stringify(selectedQueue)
+        fs.writeFile('queues.json', jsonQueue, err => {
+            if(err){
+                throw err;
+            }
+        })
+        return selectedQueue
+    } 
+
+
     getQueues(){
         const queues = []
         queues.push(JSON.parse(fs.readFileSync('queues.json')))

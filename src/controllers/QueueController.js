@@ -33,9 +33,33 @@ class QueueController {
     }
     return { queue, message, isEphemeral }
   }
-}
+
+
+  async joinQueue(user, interactionId, rank) {
+    var queue = _dm.getQueueByRank(rank)
+    var name = await _dm.getProfileById(user.id)
+    var isEphemeral = false
+    var message = " "
+    var found = false
+    queue.players.forEach((player) => {
+      if(player.userName === name.userName) {
+        isEphemeral = true
+        found = true
+      }})
+      if(found) {
+        message = "You are already in this queue."
+        
+      } else {        
+        queue = _dm.joinQueue(user, interactionId, rank)
+        message = "Successfully joined this queue."
+      }
+      
+      return { queue, message, isEphemeral }
+    }
+  }
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 
 module.exports = QueueController;
+

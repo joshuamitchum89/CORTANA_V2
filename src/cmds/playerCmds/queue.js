@@ -40,3 +40,5 @@ function initEmbed(response)
     .setColor('GREEN')
     return embed
 }
+
+
