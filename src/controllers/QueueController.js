@@ -36,13 +36,13 @@ class QueueController {
 
 
   async joinQueue(user, interactionId, rank) {
-    var queue = _dm.getQueueByRank(rank)
-    var name = await _dm.getProfileById(user.id)
+    var queue = await _dm.getQueueByRank(rank)
+    var profile = await _dm.getProfileById(user.id)
     var isEphemeral = false
     var message = " "
     var found = false
     queue.players.forEach((player) => {
-      if(player.userName === name.userName) {
+      if(player.userName === profile.userName) {
         isEphemeral = true
         found = true
       }})
@@ -50,13 +50,13 @@ class QueueController {
         message = "You are already in this queue."
         
       } else {        
-        queue = _dm.joinQueue(user, interactionId, rank)
+        queue = await _dm.joinQueue(user, interactionId, rank)
         message = "Successfully joined this queue."
       }
       
-      return { queue, message, isEphemeral }
-    }
+    return { queue, message, isEphemeral }
   }
+}
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
