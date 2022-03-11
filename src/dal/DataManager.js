@@ -60,14 +60,13 @@ class DataManager {
         })
     }
 
-
     async createQueue(user, interactionId, rank) {
         // checkFilesExists()
         // if not create file queues.json and add queue
         // if so add queue
         const profile = await this.getProfileById(user.id)
         const queue = new queueModel(profile, interactionId, rank)
-        saveJSON('queues.json', queue);
+        this.saveJSON('queues.json', queue);
         // const jsonQueue = JSON.stringify(queue)
         // fs.writeFile('queues.json', jsonQueue, err => {
         //     if (err) {
@@ -81,7 +80,7 @@ class DataManager {
         var profile = new profileModel()
         profile = await this.getProfileById(user.id)
         selectedQueue.players.push(profile)
-        saveJSON('queues.json', selectedQueue);
+        this.saveJSON('queues.json', selectedQueue);
         // const jsonQueue = JSON.stringify(selectedQueue)
         // fs.writeFile('queues.json', jsonQueue, err => {
         //     if (err) {
