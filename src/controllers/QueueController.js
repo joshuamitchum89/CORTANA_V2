@@ -17,25 +17,34 @@ class QueueController {
  * Apply business rules for queues in this controller!
  */
  
-  async createQueue(user, interactionId, rank) {
-    var queue = _dm.getQueueByRank(rank)
+  async createQueue(interaction, rank) {
+    var fileExists = await _dm.checkFileExists(_dm.queuesJSON)
+    var queue = null
     var isEphemeral = false
     var message = " "
-    if(queue){
-      isEphemeral = true
-      message = "Queue already found for this rank. Try /join."
-    }
-    if(!queue){
-      _dm.createQueue(user, interactionId, rank)
-      await delay(1000)
+    if(!fileExists){
+      console.log('File did not exist.')
+      await _dm.createQueue(interaction, rank)
       queue = _dm.getQueueByRank(rank)
       message = "Created queue."
+    }
+    else {
+      queue = _dm.getQueueByRank(rank)
+      if(queue){
+        isEphemeral = true
+        message = "Queue already found for this rank. Try /join."
+      }
+      if(!queue){
+        await _dm.createQueue(interaction, rank)
+        queue = _dm.getQueueByRank(rank)
+        message = "Created queue."
+      }
     }
     return { queue, message, isEphemeral }
   }
 
 
-  async joinQueue(user, interactionId, rank) {
+  async joinQueue(user, rank) {
     var queue = await _dm.getQueueByRank(rank)
     var profile = await _dm.getProfileById(user.id)
     var isEphemeral = false
@@ -50,7 +59,7 @@ class QueueController {
         message = "You are already in this queue."
         
       } else {        
-        queue = await _dm.joinQueue(user, interactionId, rank)
+        queue = await _dm.joinQueue(user, rank)
         message = "Successfully joined this queue."
       }
       

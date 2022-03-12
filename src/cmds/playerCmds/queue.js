@@ -19,8 +19,11 @@ async function requestHandler(interaction){
     const name = 'queue'
     const router = new Router()
     const response = await router.Route(interaction, category, name)
+
+    // DEVELOPEMENT
     console.log(response)
-    console.log(response.queue.players)
+    // console.log(response.queue.players)
+
     buildResponse(interaction, response)
 }
 

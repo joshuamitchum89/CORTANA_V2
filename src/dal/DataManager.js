@@ -9,8 +9,12 @@ dotenv.config()
 
 class DataManager {
     #connectionString;
+    queuesJSON;
+    matchesJSON;
     constructor() {
         this.#connectionString = process.env.URI;
+        this.queuesJSON = 'queues.json'
+        this.matchesJSON = 'matches.js'
     }
 
     connectDB() {
@@ -60,53 +64,45 @@ class DataManager {
         })
     }
 
-    async createQueue(user, interactionId, rank) {
-        // checkFilesExists()
-        // if not create file queues.json and add queue
-        // if so add queue
-        const profile = await this.getProfileById(user.id)
-        const queue = new queueModel(profile, interactionId, rank)
-        this.saveJSON('queues.json', queue);
-        // const jsonQueue = JSON.stringify(queue)
-        // fs.writeFile('queues.json', jsonQueue, err => {
-        //     if (err) {
-        //         throw err;
-        //     }
-        // })
+    async createQueue(interaction, rank) {
+        const profile = await this.getProfileById(interaction.user.id)
+        const queue = new queueModel(profile, interaction.id, rank)
+        this.saveJSON(this.queuesJSON, queue)
     }
 
-    async joinQueue(user, interactionId, rank) {
+    async checkFileExists(path){
+        if(fs.existsSync(path)){
+            return true
+        }
+        return false
+    }
+
+    async joinQueue(user, rank) {
         const selectedQueue = this.getQueueByRank(rank)
         var profile = new profileModel()
         profile = await this.getProfileById(user.id)
         selectedQueue.players.push(profile)
-        this.saveJSON('queues.json', selectedQueue);
-        // const jsonQueue = JSON.stringify(selectedQueue)
-        // fs.writeFile('queues.json', jsonQueue, err => {
-        //     if (err) {
-        //         throw err;
-        //     }
-        // })
+        this.saveJSON(this.queuesJSON, selectedQueue);
         return selectedQueue
     }
 
 
     getQueues() {
         const queues = []
-        queues.push(JSON.parse(fs.readFileSync('queues.json')))
+        queues.push(JSON.parse(fs.readFileSync(this.queuesJSON)))
         return queues
     }
 
     getQueueByRank(rank) {
         const queues = []
-        queues.push(JSON.parse(fs.readFileSync('queues.json')))
+        queues.push(JSON.parse(fs.readFileSync(this.queuesJSON)))
         const selectedQueue = queues.find(queue => { return queue.rank === rank })
         return selectedQueue
     }
 
     getQueueById(id) {
         const queues = []
-        queues.push(JSON.parse(fs.readFileSync('queues.json')))
+        queues.push(JSON.parse(fs.readFileSync(this.queuesJSON)))
         const selectedQueue = queues.find(queue => { return queue.queueId === id })
         return selectedQueue
     }

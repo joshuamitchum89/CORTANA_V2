@@ -28,10 +28,10 @@ class Router{
       case 'Queue':
         switch (cmdName) {
           case 'queue':
-            return this.queueController.createQueue(interaction.user, interaction.id, 1)
+            return this.queueController.createQueue(interaction, 1)
           break;
           case 'join':
-            return this.queueController.joinQueue(interaction.user, interaction.id, 1)
+            return this.queueController.joinQueue(interaction.user, 1)
           break;
           case 'leave':
             // /leave route
