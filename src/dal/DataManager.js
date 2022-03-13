@@ -77,15 +77,24 @@ class DataManager {
         return false
     }
 
-    async joinQueue(user, rank) {
+    async joinQueue(interaction, rank) {
         const selectedQueue = this.getQueueByRank(rank)
         var profile = new profileModel()
-        profile = await this.getProfileById(user.id)
+        profile = await this.getProfileById(interaction.user.id)
         selectedQueue.players.push(profile)
         this.saveJSON(this.queuesJSON, selectedQueue);
         return selectedQueue
     }
 
+    async leaveQueue(interaction, rank) {
+        const selectedQueue = this.getQueueByRank(rank)
+        var profile = new profileModel()
+        profile = await this.getProfileById(interaction.user.id)
+        var filteredPlayers = selectedQueue.players.filter(player => { return player.userId !== interaction.user.id })
+        selectedQueue.players = filteredPlayers
+        this.saveJSON(this.queuesJSON, selectedQueue);
+        return selectedQueue
+    }
 
     getQueues() {
         const queues = []

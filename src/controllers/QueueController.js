@@ -12,7 +12,7 @@ class QueueController {
 
   }
 
-/**
+ /*
  * TODO:
  * Apply business rules for queues in this controller!
  */
@@ -23,7 +23,6 @@ class QueueController {
     var isEphemeral = false
     var message = " "
     if(!fileExists){
-      console.log('File did not exist.')
       await _dm.createQueue(interaction, rank)
       queue = _dm.getQueueByRank(rank)
       message = "Created queue."
@@ -44,9 +43,10 @@ class QueueController {
   }
 
 
-  async joinQueue(user, rank) {
+  async joinQueue(interaction, rank) {
     var queue = await _dm.getQueueByRank(rank)
-    var profile = await _dm.getProfileById(user.id)
+    if(queue){
+    var profile = await _dm.getProfileById(interaction.user.id)
     var isEphemeral = false
     var message = " "
     var found = false
@@ -58,11 +58,45 @@ class QueueController {
       if(found) {
         message = "You are already in this queue."
         
-      } else {        
-        queue = await _dm.joinQueue(user, rank)
+      } 
+      else {        
+        queue = await _dm.joinQueue(interaction, rank)
         message = "Successfully joined this queue."
       }
-      
+      return { queue, message, isEphemeral }
+    }
+    else{
+      return this.createQueue(interaction, rank)
+    }
+  }
+
+  async leaveQueue(interaction, rank){
+    var queue = await _dm.getQueueByRank(rank)
+    if(queue){
+      var profile = await _dm.getProfileById(interaction.user.id)
+      var isEphemeral = false
+      var message = " "
+      var found = false
+      queue.players.forEach((player) => {
+        if(player.userName === profile.userName) {
+          found = true
+        }})
+        
+      if(found) {
+        await _dm.leaveQueue(interaction, rank)
+        queue = await _dm.getQueueByRank(rank)
+        message = interaction.user.username + " left the queue."
+      } 
+      else {
+        queue = await _dm.getQueueByRank(rank)
+        message = interaction.user.username + " not in queue."
+        isEphemeral = true
+      }
+    }
+    else{
+      isEphemeral = true
+      message = "No queue found for your rank."
+    }
     return { queue, message, isEphemeral }
   }
 }
