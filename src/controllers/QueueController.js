@@ -62,7 +62,12 @@ class QueueController {
       else {        
         queue = await _dm.joinQueue(interaction, rank)
         message = "Successfully joined this queue."
+        if(queue.players.length === 8)  {
+          await _dm.createMatch(queue, queue.queueId, rank)
+          return { queue, message, isEphemeral }
+        }
       }
+      
       return { queue, message, isEphemeral }
     }
     else{

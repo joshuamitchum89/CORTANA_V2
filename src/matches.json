@@ -1,7 +1,35 @@
 {
   "isActive": true,
+  "map": "Aquarius",
+  "gameType": "Capture the Flag",
+  "aCapt": {
+    "_id": "622651c743aefaef5bf27bee8",
+    "userName": "Player4",
+    "userId": "471374164542494989",
+    "mmr": 0,
+    "wins": 0,
+    "losses": 0,
+    "rank": 0,
+    "rankRole": 0,
+    "emblem": " ",
+    "gamerTag": " ",
+    "__v": 0
+  },
+  "bCapt": {
+    "_id": "622651c743fa7885bd27bee8",
+    "userName": "Player6",
+    "userId": "471374166174476588",
+    "mmr": 0,
+    "wins": 0,
+    "losses": 0,
+    "rank": 0,
+    "rankRole": 0,
+    "emblem": " ",
+    "gamerTag": " ",
+    "__v": 0
+  },
   "rank": 1,
-  "queueId": "952316632099868723",
+  "matchId": "952316632099868723",
   "players": [
     {
       "_id": "62227d3ed806cd5bfe70ba8d",
@@ -107,5 +135,19 @@
       "gamerTag": " ",
       "__v": 0
     }
-  ]
+  ],
+  "maps": [
+    "Recharge",
+    "Streets",
+    "Live Fire",
+    "Aquarius",
+    "Bazaar"
+  ],
+  "gameTypes": [
+    "Slayer",
+    "Capture the Flag",
+    "Oddball",
+    "Strongholds"
+  ],
+  "match": "952316632099868723"
 }

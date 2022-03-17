@@ -3,6 +3,8 @@ const dotenv = require('dotenv');
 const profileModel = require('./models/profileModel.js');
 const queueModel = require('./models/queueModel.js');
 const fs = require('fs');
+const matchModel = require('./models/matchModel.js');
+const { Console } = require('console');
 dotenv.config()
 
 /* Handles any database calls */
@@ -14,7 +16,7 @@ class DataManager {
     constructor() {
         this.#connectionString = process.env.URI;
         this.queuesJSON = 'queues.json'
-        this.matchesJSON = 'matches.js'
+        this.matchesJSON = 'matches.json'
     }
 
     connectDB() {
@@ -70,6 +72,11 @@ class DataManager {
         this.saveJSON(this.queuesJSON, queue)
     }
 
+    async createMatch(queue, id, rank) {
+        var match = new matchModel(queue.players, id, rank)
+        this.saveJSON(this.matchesJSON, match)
+    }
+
     async checkFileExists(path){
         if(fs.existsSync(path)){
             return true
@@ -94,6 +101,26 @@ class DataManager {
         selectedQueue.players = filteredPlayers
         this.saveJSON(this.queuesJSON, selectedQueue);
         return selectedQueue
+    }
+
+    getMatches() {
+        const matches = []
+        matches.push(JSON.parse(fs.readFileSync(this.matchesJSON)))
+        return matches
+    }
+
+    getMatchByRank(rank) {
+        const matches = []
+        matches.push(JSON.parse(fs.readFileSync(this.matchesJSON)))
+        const selectedMatch = matches.find(match => { return match.rank === rank })
+        return selectedMatch
+    }
+
+    getMatchById(id) {
+        const matches = []
+        matches.push(JSON.parse(fs.readFileSync(this.matchesJSON)))
+        const selectedMatch = matches.find(match => { return match.matchId === id })
+        return selectedMatch
     }
 
     getQueues() {
