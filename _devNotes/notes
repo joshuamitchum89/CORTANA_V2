@@ -1,0 +1,9 @@
+CURRENT ROUTING OF CMDS:
+Request : cmd.js => Router.js => [Respective]Controller => DataManager.js
+Response : cmd.js <= Router.js <= [Respective]Controller <= DataManager.js
+
+Need to build a ResponseBuilder.js class to dynamically create responses based
+on the response object. Currently there are redundant functions to format responses.
+This can be done in an external class and returned to the cmd.js file callback.
+
+Business logic can be done in controller through external classes.

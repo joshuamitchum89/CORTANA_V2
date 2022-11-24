@@ -1,0 +1,111 @@
+{
+  "isActive": true,
+  "rank": 1,
+  "queueId": "952316632099868723",
+  "players": [
+    {
+      "_id": "62227d3ed806cd5bfe70ba8d",
+      "userName": "BroodWar1989",
+      "userId": "670454004907507724",
+      "mmr": 0,
+      "wins": 0,
+      "losses": 0,
+      "rank": 0,
+      "rankRole": 0,
+      "emblem": " ",
+      "gamerTag": " ",
+      "__v": 0
+    },
+    {
+      "_id": "6226789d5bbf16f336973de3",
+      "userName": "Matty",
+      "userId": "562236463136374794",
+      "mmr": 0,
+      "wins": 0,
+      "losses": 0,
+      "rank": 0,
+      "rankRole": 0,
+      "emblem": " ",
+      "gamerTag": " ",
+      "__v": 0
+    },
+    {
+      "_id": "622651c743aefaef5bf27bee8",
+      "userName": "Player4",
+      "userId": "471374164542494989",
+      "mmr": 0,
+      "wins": 0,
+      "losses": 0,
+      "rank": 0,
+      "rankRole": 0,
+      "emblem": " ",
+      "gamerTag": " ",
+      "__v": 0
+    },
+    {
+      "_id": "622651c743ds7455bd27bee8",
+      "userName": "Player5",
+      "userId": "471374166172483689",
+      "mmr": 0,
+      "wins": 0,
+      "losses": 0,
+      "rank": 0,
+      "rankRole": 0,
+      "emblem": " ",
+      "gamerTag": " ",
+      "__v": 0
+    },
+    {
+      "_id": "622651c743fa7885bd27bee8",
+      "userName": "Player6",
+      "userId": "471374166174476588",
+      "mmr": 0,
+      "wins": 0,
+      "losses": 0,
+      "rank": 0,
+      "rankRole": 0,
+      "emblem": " ",
+      "gamerTag": " ",
+      "__v": 0
+    },
+    {
+      "_id": "622651c743fa7545bd27bee8",
+      "userName": "Player7",
+      "userId": "471374166176599989",
+      "mmr": 0,
+      "wins": 0,
+      "losses": 0,
+      "rank": 0,
+      "rankRole": 0,
+      "emblem": " ",
+      "gamerTag": " ",
+      "__v": 0
+    },
+    {
+      "_id": "622651gd43fa7d45bd27bee8",
+      "userName": "Player8",
+      "userId": "471374165176599989",
+      "mmr": 0,
+      "wins": 0,
+      "losses": 0,
+      "rank": 0,
+      "rankRole": 0,
+      "emblem": " ",
+      "gamerTag": " ",
+      "__v": 0
+    },
+    {
+      "_id": "622651c743fa7225bd27bee8",
+      "userName": "Rewired",
+      "userId": "471374166172499989",
+      "mmr": 0,
+      "wins": 0,
+      "losses": 0,
+      "rank": 0,
+      "rankRole": 0,
+      "emblem": " ",
+      "gamerTag": " ",
+      "__v": 0
+    }
+  ]
+}
